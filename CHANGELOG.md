@@ -1,5 +1,17 @@
 # remark-wiki-link
 
+## 4.0.0
+
+### Major Changes
+
+- 🚨 Breaking: New Wiki-Link Resolution Strategy
+
+  This release introduces a more robust wiki-link resolution approach.
+
+  **🔧 Key Changes:**
+  - New option `headingResolver` to resolve headings when permalink is available
+  - The heading is now slugified by default when permalink is available
+
 ## 3.3.1
 
 ### Patch Changes

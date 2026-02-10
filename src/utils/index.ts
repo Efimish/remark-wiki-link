@@ -62,6 +62,9 @@ export function isSupportedFileType(
   );
 }
 
+export const defaultHeadingResolver = (heading?: string) =>
+  heading ? `#${slug(heading)}` : "";
+
 export const defaultUrlResolver = ({
   filePath,
   heading,

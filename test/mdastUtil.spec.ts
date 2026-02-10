@@ -465,9 +465,9 @@ describe("mdast-util-wiki-link", () => {
 
       visit(ast, "wikiLink", (node) => {
         expect(node.value).toBe("blog/my-post#Section");
-        expect(node.data.path).toBe("/custom-url#Section");
+        expect(node.data.path).toBe("/custom-url#section");
         expect(node.data.existing).toBe(true);
-        expect(node.data.hProperties?.href).toBe("/custom-url#Section");
+        expect(node.data.hProperties?.href).toBe("/custom-url#section");
       });
     });
 

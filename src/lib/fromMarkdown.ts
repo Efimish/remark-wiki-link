@@ -4,6 +4,7 @@ import type {
 } from "mdast-util-from-markdown";
 import {
   defaultUrlResolver,
+  defaultHeadingResolver,
   findMatchingFilePath,
   isImageFile,
   isMarkdownFile,
@@ -22,6 +23,7 @@ function fromMarkdown(opts: Options = {}): FromMarkdownExtension {
   const caseInsensitive = opts.caseInsensitive ?? true;
   const className = opts.className || "internal";
   const newClassName = opts.newClassName || "new";
+  const headingResolver = opts.headingResolver || defaultHeadingResolver;
   const urlResolver = opts.urlResolver || defaultUrlResolver;
 
   function top(stack: any): WikiLink | Embed {
@@ -89,7 +91,8 @@ function fromMarkdown(opts: Options = {}): FromMarkdownExtension {
     if (matchingFilePath && permalinks[matchingFilePath]) {
       // Use the permalink directly, optionally adding heading
       const permalink = permalinks[matchingFilePath];
-      url = heading ? `${permalink}#${heading}` : permalink;
+      const headingId = headingResolver(heading);
+      url = `${permalink}${headingId}`;
     } else {
       // Apply urlResolver to the matched file path (or original if no match)
       // For embeds, don't apply urlResolver

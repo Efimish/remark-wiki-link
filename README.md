@@ -1,6 +1,6 @@
 # remark-wiki-link
 
-`remark` plugin to parse and render wiki-style links like `[[...]]` and `![[...]]` in markdown. This works whatever markdown you have *and* it is particularly designed to support the Obsidian style links.
+`remark` plugin to parse and render wiki-style links like `[[...]]` and `![[...]]` in markdown. This works whatever markdown you have _and_ it is particularly designed to support the Obsidian style links.
 
 ## Features supported
 
@@ -98,6 +98,16 @@ Type: `string`
 Default: `"new"`
 
 Class name added to nodes for which no matching permalink (passed in `permalinks` option) was found.
+
+### `headingResolver`
+
+Type: `(heading?: string) => string`
+Default: ``(heading?: string) => heading ? `#${slug(heading)}` : "" ``
+
+A function that resolves a heading when permalink is available. The heading is the part in
+`[[#heading]]` or
+`[[target#heading]]` or
+`[[target#heading|alias]]`.
 
 ### `urlResolver`
 

@@ -47,18 +47,21 @@ function toMarkdown(opts: ToMarkdownOptions = {}): ToMarkdownExtension {
     const exit = state.enter("embed");
 
     const nodeValue = state.safe(node.value, { before: "[", after: "]" });
-    
+
     // Check if there are dimensions (width/height) in hProperties
     const width = node.data.hProperties?.width;
     const height = node.data.hProperties?.height;
-    
+
     let aliasOrDimensions = "";
     if (width || height) {
       // Reconstruct dimensions string
       aliasOrDimensions = width && height ? `${width}x${height}` : width || "";
     } else if (node.data.alias) {
       // Use regular alias if no dimensions
-      aliasOrDimensions = state.safe(node.data.alias, { before: "[", after: "]" });
+      aliasOrDimensions = state.safe(node.data.alias, {
+        before: "[",
+        after: "]",
+      });
     }
 
     const value = aliasOrDimensions
